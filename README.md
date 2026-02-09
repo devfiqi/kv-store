@@ -71,6 +71,3 @@ This implementation is guided by foundational research and production system des
 - **Sloppy quorum:** Accept writes even when preferred nodes are down
 - **Hinted handoff:** Temporary storage on alternative nodes
 - **Read repair:** Fix inconsistencies during reads
-
-## Running the System
-```bash

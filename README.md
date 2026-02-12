@@ -1,6 +1,6 @@
 # Distributed Key-Value Store
 
-A distributed key-value store inspired by Amazon Dynamo and LinkedIn's Voldemort, implementing leaderless replication with eventual consistency.
+A distributed key-value store inspired by Amazon Dynamo and LinkedIn's Voldemort.
 
 ## Overview
 
@@ -31,24 +31,11 @@ This implementation is guided by foundational research and production system des
   - Section 4.3: Replication
   - Section 4.4: Data Versioning (vector clocks)
   - Section 4.7: Handling Failures (hinted handoff, read repair)
-
-**Implementation References:**
-- Project Voldemort Design
-  - LinkedIn's production Dynamo-inspired system
-  - Consistent hashing implementation
-  - Vector clock implementation
-  - Client-side routing
-
-### Consensus & Distributed Systems Background
-
-**Understanding Raft (for context, NOT used in this project):**
+  
 - The Secret Lives of Data - Raft Visualization
-  - Interactive visualization of leader-based consensus
-  - Useful for understanding the *alternative* approach (leader-based vs leaderless)
+  - Understanding the *alternative* approach (leader-based vs leaderless)
   
 - Raft Paper
-  - Understanding strong consistency and leader election
-  - Contrast with our eventual consistency model  
 
 ## Key Design Decisions
 

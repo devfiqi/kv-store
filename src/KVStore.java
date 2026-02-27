@@ -1,5 +1,3 @@
-package com.kvstore;
-
 import java.util.concurrent.ConcurrentHashMap;
 
 public class KVStore {
@@ -16,5 +14,4 @@ public class KVStore {
     public void delete(String key) {
         store.remove(key);
     }
-    
 }

@@ -1,5 +1,3 @@
-package com.kvstore;
-
 import java.io.*;
 import java.net.*;
 
@@ -21,7 +19,7 @@ public class KVClient {
         );
 
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        
+
         // send command
         out.println(command);
 
@@ -31,9 +29,10 @@ public class KVClient {
 
         return response;
     }
+
     public static void main(String[] args) throws IOException {
         KVClient client = new KVClient("localhost", 8080);
-        
+
         System.out.println(client.send("PUT user:123 Koko"));
         System.out.println(client.send("GET user:123"));
         System.out.println(client.send("DELETE user:123"));

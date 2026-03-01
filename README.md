@@ -1,60 +1,35 @@
 # Distributed Key-Value Store
 
-A distributed key-value store inspired by Amazon Dynamo and LinkedIn's Voldemort.
+A distributed key-value store built to understand the core concepts behind production systems like Amazon DynamoDB and LinkedIn's Voldemort.
 
-## Overview
+## Learning Objectives
 
-This project explores the core concepts of distributed data storage systems used in production at scale. The system prioritizes **availability** and **partition tolerance** over strict consistency, using techniques like consistent hashing, quorum-based operations, and vector clocks for conflict resolution.
+### Core Concepts
+- **Quorum replication** - How systems achieve fault tolerance without a single leader
+- **Consistent hashing** - Minimizing data movement when nodes join/leave the cluster
+- **Eventual consistency** - Trading strong consistency for availability and partition tolerance
+- **Conflict resolution** - Using vector clocks to handle concurrent writes
 
-## Architecture Goals
+### Architecture
+- N=3, W=2, R=2 (configurable quorum for reads/writes)
+- Virtual nodes for even data distribution
+- Leaderless replication - all nodes are equal peers
 
-- **Leaderless replication:** No single point of failure, all nodes are peers
-- **Tunable consistency:** Configurable N (replication factor), R (read quorum), W (write quorum)
-- **Horizontal scalability:** Add/remove nodes with minimal data movement
-- **Conflict resolution:** Detect and resolve concurrent writes using vector clocks
-- **Fault tolerance:** Continue operating during node failures
+## Resources
 
-## Learning Resources
+**Designing Data-Intensive Applications** by Martin Kleppmann
+- Chapter 5: Replication (leaderless replication patterns)
+- Chapter 6: Partitioning (consistent hashing, virtual nodes)
 
-This implementation is guided by foundational research and production system designs:
+**Dynamo: Amazon's Highly Available Key-value Store**
+- System architecture and design trade-offs
+- Quorum-based replication
+- Vector clocks for versioning
 
-### Core Papers & Books
+## Technologies
+- Java
+- Distributed systems concepts
 
-**Primary References:**
-- Designing Data-Intensive Applications by Martin Kleppmann
-  - Chapter 5: Replication (focus on leaderless replication)
-  - Chapter 6: Partitioning (consistent hashing, virtual nodes)
-  - Chapter 7: Transactions (conflict resolution, vector clocks)
-  
-- Dynamo: Amazon's Highly Available Key-value Store
-  - Section 4: System Architecture
-  - Section 4.3: Replication
-  - Section 4.4: Data Versioning (vector clocks)
-  - Section 4.7: Handling Failures (hinted handoff, read repair)
-  
-- The Secret Lives of Data - Raft Visualization
-  - Understanding the *alternative* approach (leader-based vs leaderless)
-  
-- Raft Paper
+## Goal?
 
-## Key Design Decisions
-
-### Consistency Model
-- **Eventual consistency** over strong consistency
-- Tunable via N/R/W parameters
-- Example: N=3, R=2, W=2 ensures read-after-write consistency
-
-### Partitioning Strategy
-- **Consistent hashing** with virtual nodes
-- Minimizes data movement when adding/removing nodes
-- Even load distribution across cluster
-
-### Conflict Resolution
-- **Vector clocks** for causality tracking
-- Application-level conflict resolution
-- Last-write-wins as fallback
-
-### Failure Handling
-- **Sloppy quorum:** Accept writes even when preferred nodes are down
-- **Hinted handoff:** Temporary storage on alternative nodes
-- **Read repair:** Fix inconsistencies during reads
+Built to understand how production distributed databases work under the hood - the same architecture used by Cassandra, DynamoDB, and Voldemort.
